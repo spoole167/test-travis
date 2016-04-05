@@ -1,0 +1,9 @@
+<h1 class="title" data-bind="title"></h1>
+<p>
+<span class="metric" data-bind="current | shortenedNumber | prepend prefix | append suffix"></span>&nbsp;<span class="unit" data-bind="unit"></span>
+
+<i data-bind-class="arrow | prepend 'icon up '"></i>
+</p>
+
+<p class="updated-at" data-bind="updatedAtMessage"></p>
+<i data-bind-class="icon | prepend 'icon icon-'" style="font-size:18px; position: absolute; top:2px; right: 2px;"></i>

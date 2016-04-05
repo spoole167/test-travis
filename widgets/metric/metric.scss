@@ -1,0 +1,63 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$background-color:  #47bbb3;
+$value-color:       #fff;
+
+$title-color:       rgba(255, 255, 255, 0.7);
+$moreinfo-color:    rgba(255, 255, 255, 0.7);
+
+// ----------------------------------------------------------------------------
+// Widget-metric styles
+// ----------------------------------------------------------------------------
+.widget-metric {
+
+  background-color: $background-color;
+  //background: $background-color url('../../assets/cyclef.png') no-repeat;
+
+  .title {
+    color: $title-color;
+    font-size: 20px;
+  }
+
+  .value {
+    color: $value-color;
+  }
+  
+    .metric {
+    color: $value-color;
+    font-size: 3em;
+    font-weight: 500;
+  }
+  
+  .unit 
+  {font-size: 2em;}
+  
+  .icon {
+  font-size: 3em;
+  }
+
+  .change-rate {
+    font-weight: 500;
+    font-size: 30px;
+    color: $value-color;
+  }
+
+  .more-info {
+    color: $moreinfo-color;
+  }
+
+  .updated-at {
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .asc {color: #006400;
+    }
+  .desc {color: darkred;
+    }
+
+}
+
+    
+  .notarget {background-color:#0000ff;}
+  .yestarget {background-color: #96bf48;}

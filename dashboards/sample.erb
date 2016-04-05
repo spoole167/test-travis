@@ -1,0 +1,73 @@
+<% content_for :title do %>Product Summary<% end %>
+
+
+  <script type='text/javascript'>
+$(function() {
+  Dashing.widget_base_dimensions = [130, 30]
+  Dashing.numColumns = 10
+});
+</script>
+
+<div class="gridster">
+
+  <ul>
+
+    <li  data-col="1" data-row="1" data-sizex="6" data-sizey="2">
+      <div class="dashing-header" data-header="Cloud Integration Development" data-id="awdtext" data-view="Header" ></div>
+    </li>
+
+    <li data-col="1" data-row="3" data-sizex="1" data-sizey="2">
+      <div class="dashing-header-2" data-header="Product" data-id="awdtext" data-view="Header" ></div>
+    </li>
+    <li data-col="3" data-row="3" data-sizex="1" data-sizey="2">
+      <div class="dashing-header-2" data-header="Development Lead" data-id="awdtext" data-view="Header" ></div>
+    </li>
+    <li data-col="4" data-row="3" data-sizex="1" data-sizey="2">
+      <div class="dashing-header-2" data-header="Development Cycle" data-id="awdtext" data-view="Header" ></div>
+    </li>
+    <li data-col="5" data-row="3" data-sizex="1" data-sizey="2">
+      <div class="dashing-header-2" data-header="Deployment Lead" data-id="awdtext" data-view="Header" ></div>
+    </li>
+    <li data-col="6" data-row="3" data-sizex="1" data-sizey="2">
+      <div class="dashing-header-2" data-header="Deployment Interval" data-id="awdtext" data-view="Header" ></div>
+    </li>
+    <li data-col="7" data-row="3" data-sizex="1" data-sizey="2">
+      <div class="dashing-header-2" data-header=Mean data-id="awdtext" data-view="Header"></div>
+    </li>
+    <li data-col="8" data-row="3" data-sizex="1" data-sizey="2">
+      <div class="dashing-header-2" data-header="Change Success Rate" data-id="awdtext" data-view="Header" ></div>
+    </li>
+    <li data-col="9" data-row="3" data-sizex="1" data-sizey="2">
+      <div class="dashing-header-2" data-header="% Static Infrastructure" data-id="awdtext" data-view="Header" ></div>
+    </li>
+    <li data-col="10" data-row="3" data-sizex="1" data-sizey="2">
+      <div  class="dashing-header-2" data-header="Manual Deploy Overhead" data-id="awdtext" data-view="Header" ></div>
+    </li>
+
+  <% datarow=3 %>
+  <% DB.products.each do |product| %>
+    <% metrics=DB.metrics(product['name']) || {} %>
+    <% datarow=datarow+2%>
+    <li data-col="1" data-row="<%=datarow%>" data-sizex="2" data-sizey="2">
+      <div class="dashing-header-3" data-header="<%=product['name']%>" data-id="rtrcptext" data-view="Header"></div>
+    </li>
+
+    <%
+    col=2
+    ['devlead','devcycle','deplead','depint','mean','csr','pcstatic','mdo'].each do |m|
+      col=col+1
+    %>
+
+    <li data-col="<%=col%>" data-row="<%=datarow%>" data-sizex="1" data-sizey="2">
+      <% metric=FMT.metric(metrics,m) %>
+      <div class="dashing-trend-<%=metric.direction%> dashing-trend-active-<%=metric.active?%>" data-title="<%=metric.value%>" data-icon="<%=metric.icon%>" data-id="<%=m%>" data-view="Fa" ></div>
+    </li>
+    <% end %>
+
+
+      <% end %>
+
+
+  </ul>
+
+</div>

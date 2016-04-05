@@ -1,0 +1,22 @@
+---
+convergence: |+
+  data: {"points":[{"x":121,"y":32},{"x":122,"y":13},{"x":123,"y":3},{"x":124,"y":27},{"x":125,"y":20},{"x":126,"y":1},{"x":127,"y":49},{"x":128,"y":8},{"x":129,"y":45},{"x":130,"y":8}],"id":"convergence","updatedAt":1459896004}
+
+buzzwords: |+
+  data: {"items":[{"label":"Turn-key","value":19},{"label":"Exit strategy","value":15},{"label":"Streamlininess","value":16},{"label":"Pivoting","value":15},{"label":"Enterprise","value":11},{"label":"Leverage","value":13},{"label":"Synergy","value":10},{"label":"Paradigm shift","value":13},{"label":"Web 2.0","value":8}],"id":"buzzwords","updatedAt":1459896004}
+
+valuation: |+
+  data: {"current":39,"last":50,"id":"valuation","updatedAt":1459896004}
+
+karma: |+
+  data: {"current":32645,"last":2456,"id":"karma","updatedAt":1459896004}
+
+synergy: |+
+  data: {"value":64,"id":"synergy","updatedAt":1459896004}
+
+mq-status: |+
+  data: {"label":"invalid response from product server getaddrinfo: nodename nor servname provided, or not known","id":"mq-status","updatedAt":1459891686}
+
+liberty-status: |+
+  data: {"label":"invalid response from product server getaddrinfo: nodename nor servname provided, or not known","id":"liberty-status","updatedAt":1459891686}
+

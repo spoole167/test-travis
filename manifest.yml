@@ -1,0 +1,8 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: w3ibm.mybluemix.net
+  name: agile-metrics-dashboard
+  host: agile-metrics-dashboard
+  disk_quota: 1024M

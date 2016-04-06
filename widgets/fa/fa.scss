@@ -1,0 +1,28 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$background-color:  #ccc;
+$value-color:       #fff;
+
+$title-color:       rgba(255, 255, 255, 0.7);
+
+// ----------------------------------------------------------------------------
+// Widget-number styles
+// ----------------------------------------------------------------------------
+.widget-fa {
+
+  background-color: $background-color;
+
+  .title {
+    color: $title-color;
+    font-size: 10px;
+  }
+  .jupdated-at {
+    font-size: 10px;
+    color: #333;
+  }
+
+  .icon {
+    font-size: 2em;
+  }
+}

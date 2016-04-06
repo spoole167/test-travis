@@ -2,6 +2,8 @@
 
 require 'couchrest'
 
+
+
 class DB
 
 # look for config for bluemix
@@ -27,20 +29,89 @@ puts "database connection established [#{@metricsdb.host}]"
 #
 def self.products
 
-  doc=@metricsdb.get('products') || { products: [] }
+  key="products"
+
+  begin
+    doc=@metricsdb.get(key)
+
+  rescue
+    doc={ _id: key , products: [ { id: 'base' , name: 'Base Product' }] }
+    @metricsdb.save_doc(doc)
+
+  end
 
   doc['products']
+
+end
+
+def self.teams
+
+  key="teams"
+
+  begin
+    doc=@metricsdb.get(key)
+
+  rescue
+    return []
+  end
+
+  doc['teams'] || []
+
+end
+
+
+def self.hasTeamsDoc?
+
+  key="teams"
+
+  begin
+    doc=@metricsdb.get(key)
+
+  rescue
+    return false
+
+  end
+
+  return true
+
+end
+
+
+def self.metrics
+
+    metrics=[]
+
+    products.each do |p|
+        puts "get metric for product #{p}"
+        metrics << productMetrics(p['id'])
+    end
+
+  metrics
 
 end
 
 #
 # returns metric data for specific product
 #
-def self.metrics(product)
-  puts "product=#{product}"
+
+def self.productMetrics(product)
+
   # get metrics data
-  doc=@metricsdb.get(product) || { product: product, metrics: {} }
-  doc['metrics']
+  key="#{product}"
+  begin
+    doc=@metricsdb.get(key)
+  rescue
+    doc={ _id: key, product: product,name: product, metrics: {} }
+    # add metric fields
+    Metrics.columns.each do |c|
+      doc[:metrics][c[:id]]={active: true, trend: 0 , value: "n/a"}
+    end
+    @metricsdb.save_doc(doc)
+
+  end
+
+  doc
+
 end
 
 #

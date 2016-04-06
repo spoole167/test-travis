@@ -1,0 +1,16 @@
+{
+   "_id": "teams",
+
+   "teams": [
+       {
+           "name": "mq",
+           "title": "MQ",
+           "url": "http://mq-metrics.com/api/v1/metrics"
+       },
+       {
+           "name": "liberty",
+           "title" : "Liberty",
+           "url": "http://liberty-metrics.com/api/v1/metrics"
+       }
+   ]
+}

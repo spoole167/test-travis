@@ -11,18 +11,6 @@ configure do
     end
   end
 
-  @vcap_application = JSON.parse(ENV['VCAP_APPLICATION'] || '{}')
-  @mode = ENV['mode']
-  case @mode
-  when 'master-server'
-    puts "master mode enabled"
-  when 'team-server'
-    puts "team mode enabled"
-  else
-   @mode='master-server'
-    puts "server mode default mode chosen"
-  end
-
 end
 
 

@@ -1,0 +1,10 @@
+{  "_id": "base",
+   "product": "base",
+   "name": "Base Product",
+   "metrics": {
+       "_devlead": {
+           "trend": 1,
+           "value": "30 days",
+           "active": true
+       }
+   }

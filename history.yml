@@ -1,22 +1,25 @@
 ---
 convergence: |+
-  data: {"points":[{"x":121,"y":32},{"x":122,"y":13},{"x":123,"y":3},{"x":124,"y":27},{"x":125,"y":20},{"x":126,"y":1},{"x":127,"y":49},{"x":128,"y":8},{"x":129,"y":45},{"x":130,"y":8}],"id":"convergence","updatedAt":1459896004}
+  data: {"points":[{"x":76,"y":46},{"x":77,"y":30},{"x":78,"y":49},{"x":79,"y":42},{"x":80,"y":19},{"x":81,"y":38},{"x":82,"y":24},{"x":83,"y":14},{"x":84,"y":11},{"x":85,"y":35}],"id":"convergence","updatedAt":1459959537}
 
 buzzwords: |+
-  data: {"items":[{"label":"Turn-key","value":19},{"label":"Exit strategy","value":15},{"label":"Streamlininess","value":16},{"label":"Pivoting","value":15},{"label":"Enterprise","value":11},{"label":"Leverage","value":13},{"label":"Synergy","value":10},{"label":"Paradigm shift","value":13},{"label":"Web 2.0","value":8}],"id":"buzzwords","updatedAt":1459896004}
+  data: {"items":[{"label":"Synergy","value":11},{"label":"Turn-key","value":8},{"label":"Exit strategy","value":9},{"label":"Web 2.0","value":15},{"label":"Paradigm shift","value":3},{"label":"Streamlininess","value":11},{"label":"Enterprise","value":6},{"label":"Pivoting","value":8},{"label":"Leverage","value":4}],"id":"buzzwords","updatedAt":1459959537}
 
 valuation: |+
-  data: {"current":39,"last":50,"id":"valuation","updatedAt":1459896004}
+  data: {"current":18,"last":49,"id":"valuation","updatedAt":1459959537}
 
 karma: |+
-  data: {"current":32645,"last":2456,"id":"karma","updatedAt":1459896004}
+  data: {"current":119955,"last":380,"id":"karma","updatedAt":1459959537}
 
 synergy: |+
-  data: {"value":64,"id":"synergy","updatedAt":1459896004}
+  data: {"value":12,"id":"synergy","updatedAt":1459959537}
 
 mq-status: |+
   data: {"label":"invalid response from product server getaddrinfo: nodename nor servname provided, or not known","id":"mq-status","updatedAt":1459891686}
 
 liberty-status: |+
   data: {"label":"invalid response from product server getaddrinfo: nodename nor servname provided, or not known","id":"liberty-status","updatedAt":1459891686}
+
+mq-v1-status: |+
+  data: {"label":"no server url defined","id":"mq-v1-status","updatedAt":1459926521}
 

@@ -1,3 +1,4 @@
+# agile-metrics-dashboard [![Chat](https://img.shields.io/badge/chat-on%20slack-brightgreen.svg)](https://cid-eacs.slack.com/messages/metrics/)
 Dashing based metrics server
 
 The project presents product team metrics using dashing

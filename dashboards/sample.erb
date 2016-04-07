@@ -32,7 +32,7 @@ $(function() {
     <% end %>
 
   <!-- Add detail rows.
-    In summary mode do no show metric values but do add in team name 
+    In summary mode do no show metric values but do add in team name
   -->
 
   <% datarow=3 %>
@@ -53,7 +53,8 @@ $(function() {
     <li data-col="<%=col%>" data-row="<%=datarow%>" data-sizex="1" data-sizey="2">
       <% metric=Metrics.format(product['metrics'],column[:id]) %>
       <% datavalue= summary ? "" :  metric.value  %>
-      <div class="dashing-trend-<%=metric.direction%> dashing-trend-active-<%=metric.active?%>" data-title="<%=datavalue%>" data-icon="<%=metric.icon%>" data-id="" data-view="Fa" ></div>
+      <% dataid="#{product['team']}-#{product['product']}-#{column[:id]}" %>
+      <div data-id="<%=dataid%>" class="dashing-trend-<%=metric.direction%> dashing-trend-active-<%=metric.active?%>" data-title="<%=datavalue%>" data-icon="<%=metric.icon%>" data-view="Fa" ></div>
     </li>
     <% end %>
 

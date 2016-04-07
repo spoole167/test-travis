@@ -57,14 +57,23 @@ class Metrics
     # should make this async at some point
 
     if mode=='summary'
+
       DB.teams.each do |t|
           metricsurl=t['url']
-          team_entries=get("#{metricsurl}")
-          products=products.concat(team_entries) unless team_entries==nil
+          team_entries=get("#{metricsurl}") || []
+          team_entries.each do |e|
+            e['team']=t['name']  # add team name into entry for rendering and updating purposes
+            products << e
+          end
       end
 
     else
-      products=DB.products || []
+
+      (DB.products || []).each do |p|
+          p['team']='team'  # add psudo team name into entry for rendering and updating purposes
+          products << p
+      end
+
     end
 
     products

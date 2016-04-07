@@ -12,7 +12,7 @@ class DB
 cloudant_config = JSON.parse(ENV['VCAP_SERVICES'] || '{}')['cloudantNoSQLDB']
 
 if cloudant_config!=nil
-  url=cloudant_config['credentials']['url']
+  url=cloudant_config[0]['credentials']['url']
 else
   # if not found assume local open connection to couchdb
   url="http://localhost:5984/"

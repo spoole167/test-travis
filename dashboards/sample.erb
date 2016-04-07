@@ -1,5 +1,5 @@
 <% content_for :title do %>Product Summary<% end %>
-<% mode=Metrics.mode %>
+<% summary=Metrics.mode=='summary' %>
 
 
 <h1><%=@team%></h1>
@@ -48,7 +48,8 @@ $(function() {
 
     <li data-col="<%=col%>" data-row="<%=datarow%>" data-sizex="1" data-sizey="2">
       <% metric=Metrics.format(product['metrics'],column[:id]) %>
-      <div class="dashing-trend-<%=metric.direction%> dashing-trend-active-<%=metric.active?%>" data-title="<%=metric.value%>" data-icon="<%=metric.icon%>" data-id="" data-view="Fa" ></div>
+      <% datavalue= summary ? "" :  metric.value  %>
+      <div class="dashing-trend-<%=metric.direction%> dashing-trend-active-<%=metric.active?%>" data-title="<%=datavalue%>" data-icon="<%=metric.icon%>" data-id="" data-view="Fa" ></div>
     </li>
     <% end %>
 

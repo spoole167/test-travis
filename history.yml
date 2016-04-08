@@ -1,18 +1,18 @@
 ---
 convergence: |+
-  data: {"points":[{"x":11,"y":8},{"x":12,"y":2},{"x":13,"y":15},{"x":14,"y":19},{"x":15,"y":13},{"x":16,"y":31},{"x":17,"y":34},{"x":18,"y":27},{"x":19,"y":24},{"x":20,"y":7}],"id":"convergence","updatedAt":1460103225}
+  data: {"points":[{"x":15,"y":6},{"x":16,"y":20},{"x":17,"y":9},{"x":18,"y":6},{"x":19,"y":43},{"x":20,"y":32},{"x":21,"y":42},{"x":22,"y":29},{"x":23,"y":35},{"x":24,"y":43}],"id":"convergence","updatedAt":1460123616}
 
 buzzwords: |+
-  data: {"items":[{"label":"Pivoting","value":2},{"label":"Streamlininess","value":1},{"label":"Web 2.0","value":1},{"label":"Synergy","value":3},{"label":"Paradigm shift","value":1},{"label":"Leverage","value":1},{"label":"Turn-key","value":1}],"id":"buzzwords","updatedAt":1460103225}
+  data: {"items":[{"label":"Leverage","value":3},{"label":"Turn-key","value":1},{"label":"Enterprise","value":1},{"label":"Pivoting","value":1},{"label":"Web 2.0","value":3},{"label":"Paradigm shift","value":2},{"label":"Synergy","value":2},{"label":"Exit strategy","value":1}],"id":"buzzwords","updatedAt":1460123616}
 
 valuation: |+
-  data: {"current":8,"last":45,"id":"valuation","updatedAt":1460103225}
+  data: {"current":18,"last":98,"id":"valuation","updatedAt":1460123616}
 
 karma: |+
-  data: {"current":192899,"last":125066,"id":"karma","updatedAt":1460103225}
+  data: {"current":70339,"last":186511,"id":"karma","updatedAt":1460123616}
 
 synergy: |+
-  data: {"value":54,"id":"synergy","updatedAt":1460103225}
+  data: {"value":48,"id":"synergy","updatedAt":1460123616}
 
 mq-status: |+
   data: {"label":"invalid response from product server getaddrinfo: nodename nor servname provided, or not known","id":"mq-status","updatedAt":1459891686}
@@ -22,4 +22,7 @@ liberty-status: |+
 
 mq-v1-status: |+
   data: {"label":"no server url defined","id":"mq-v1-status","updatedAt":1459926521}
+
+Base Product-status: |+
+  data: {"label":"no server url defined","id":"Base Product-status","updatedAt":1460121088}
 

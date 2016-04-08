@@ -1,6 +1,9 @@
 # agile-metrics-dashboard [![Chat](https://img.shields.io/badge/chat-on%20slack-brightgreen.svg)](https://cid-eacs.slack.com/messages/metrics/)
 Dashing based metrics server
 
+Example:
+![](./examples/Agile Metrics Dashboard.jpg)
+
 The project presents product team metrics using dashing
 
 Metric values are retrieved from a couchdb database

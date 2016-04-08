@@ -6,8 +6,9 @@
 
    def self.updateMetric(team,product,metric,data)
 
-       send_event("#{team}-#{product}-#{metric}", { label: data })
-       
+       # note pulling out of value field - this is so Dashing widget can do heavy lifting
+       send_event("#{team}-#{product}-#{metric}", { metric: data , summary: true})
+
    end
 
    def self.update

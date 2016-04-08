@@ -277,32 +277,24 @@ background: darkslategrey;
   text-align: center;
 }
 
-.dashing-trend-forward {
-font-size:16px !important;
-color:darkgreen;
+
+
+.trend-positive {
+    background-color: green;
+    opacity: 1.0;
 }
 
-.dashing-trend-neutural {
-font-size:16px !important;
-color:white;
-}
-.dashing-trend-reverse {
-font-size:16px !important;
-color:red;
+.trend-negative {
+    background-color: red;
+    opacity: 1.0;
 }
 
-.dashing-trend-missing {
-font-size:16px !important;
-color:black;
+.trend-stable {
+    background-color: gray;
+    opacity: 1.0;
 }
 
-.dashing-trend-active-true {
-
-  background-color: grey;
-
-
-}
-.dashing-trend-active-false {
-
-  background-color: black;
+.trend-disabled {
+  background-color: lightgray;
+  opacity: 0.2;
 }

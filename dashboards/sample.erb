@@ -1,5 +1,5 @@
 <% content_for :title do %>Product Summary<% end %>
-<% mode=Metrics.mode %>
+<% summary=Metrics.mode=='summary' %>
 
 
 <h1><%=@team%></h1>
@@ -31,13 +31,17 @@ $(function() {
     </li>
     <% end %>
 
-  <!-- Add detail rows.  -->
+  <!-- Add detail rows.
+    In summary mode do no show metric values but do add in team name
+  -->
 
   <% datarow=3 %>
+
   <% Metrics.products.each do |product| %>
     <% datarow=datarow+2%>
     <li data-col="1" data-row="<%=datarow%>" data-sizex="2" data-sizey="2">
-      <div class="dashing-header-3" data-header="<%=product['name']%>" data-id="rtrcptext" data-view="Header"></div>
+      <% productname = summary ? "#{product['team']} / #{product['name']}" : "#{product['name']}" %>
+      <div class="dashing-header-3" data-header="<%=productname%>" data-id="rtrcptext" data-view="Header"></div>
     </li>
 
     <%
@@ -47,8 +51,8 @@ $(function() {
     %>
 
     <li data-col="<%=col%>" data-row="<%=datarow%>" data-sizex="1" data-sizey="2">
-      <% metric=Metrics.format(product['metrics'],column[:id]) %>
-      <div class="dashing-trend-<%=metric.direction%> dashing-trend-active-<%=metric.active?%>" data-title="<%=metric.value%>" data-icon="<%=metric.icon%>" data-id="" data-view="Fa" ></div>
+      <% dataid="#{product['team']}-#{product['product']}-#{column[:id]}" %>
+      <div data-id="<%=dataid%>"  data-view="Fa" ></div>
     </li>
     <% end %>
 

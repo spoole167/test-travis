@@ -4,50 +4,22 @@
  class DashboardUpdate
 
 
-   def self.productUpdateFailed(product,errorText)
-       name=product['name']
-       send_event("#{name}-status", { label: errorText })
-   end
+   def self.updateMetric(team,product,metric,data)
 
-   def self.updateProduct(product,metrics)
-
-     product_name=product['name']
-     metrics.each do |m|
-        metric_name=m['name']
-        metric_value=m['value']
-        send_event("#{product_name}-#{metric_name}", { label: metric_value })
-    end
+       # note pulling out of value field - this is so Dashing widget can do heavy lifting
+       send_event("#{team}-#{product}-#{metric}", { metric: data , summary: true})
 
    end
-
 
    def self.update
 
-
-     DB.products.each do |product|
-
-
-        url=product['url']
-        if url !=nil
-
-          begin
-
-           response = RestClient.get "#{url}"
-
-           if response.code == 200
-            updateProduct(product,JSON.parse(response.body))
-          else
-            productUpdateFailed(product,"server response unexpected #{response.code}")
-          end
-
-        rescue => e
-           productUpdateFailed(product,"invalid response from product server #{e}")
-         end
-
-        else
-            productUpdateFailed(product,"no server url defined")
-        end
-
+     Metrics.products.each do |product|
+       team_name=product['team'] || 'local'
+       product_name=product['product'] || 'base'
+       metrics=product['metrics'] || {}
+       metrics.each do |metric_name,v|
+          updateMetric(team_name,product_name,metric_name,v)
+      end
      end
 
   end

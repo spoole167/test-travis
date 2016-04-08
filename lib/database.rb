@@ -14,8 +14,8 @@ cloudant_config = JSON.parse(ENV['VCAP_SERVICES'] || '{}')['cloudantNoSQLDB']
 if cloudant_config!=nil
   url=cloudant_config['credentials']['url']
 else
-  # if not found assume local open connection to couchdb
-  url="http://localhost:5984/"
+  # if not found assume local Docker network open connection to couchdb
+  url="http://db:5984/"
 end
 
 # connect and create database if missing

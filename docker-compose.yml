@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  db:
+    image: couchdb
+
+  web:
+    image: dashing
+    build: .
+    command: bundle exec rackup -s puma -p 3030
+    volumes:
+      - .:/dashboard
+    ports:
+      - "3030:3030"
+    depends_on:
+      - db
+    
+
+

@@ -2,7 +2,8 @@
 Dashing based metrics server
 
 Example:
-![](./examples/Agile Metrics Dashboard example.jpg)
+
+![](./examples/Agile Metric Dashboard example.jpg)
 
 The project presents product team metrics using dashing
 

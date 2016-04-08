@@ -1,0 +1,47 @@
+#!/bin/sh
+
+ME="./$( basename ${0} )"
+MY_DIR="$( cd "$( dirname "${0}" )" && pwd )"
+
+# The main metrics startup script - based on the cyber-dojo script by Jon Jagger
+# 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ensure docker-engine/machine/compose are installed
+
+hash docker 2> /dev/null
+if [ $? != 0 ]; then
+  echo
+  echo 'docker is not installed'
+  exit
+fi
+
+hash docker-machine 2> /dev/null
+if [ $? != 0 ]; then
+  echo
+  echo 'docker-machine is not installed'
+  exit
+fi
+
+hash docker-compose 2> /dev/null
+if [ $? != 0 ]; then
+  echo
+  echo 'docker-compose is not installed'
+  exit
+fi
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# up/down
+DOCKER_COMPOSE_FILE=docker-compose.yml
+DOCKER_COMPOSE_CMD="docker-compose --file=${MY_DIR}/${DOCKER_COMPOSE_FILE}"
+
+if [ "$*" = "up" ]; then
+  ${DOCKER_COMPOSE_CMD} up -d
+fi
+
+if [ "$*" = "down" ]; then
+  ${DOCKER_COMPOSE_CMD} down
+fi
+
+

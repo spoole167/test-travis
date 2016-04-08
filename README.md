@@ -5,16 +5,15 @@ The project presents product team metrics using dashing
 
 Metric values are retrieved from a couchdb database
 
-To run the server the first time
+To run the server the first time, make sure you have the latest Docker runtime, and then run:
 
-Install couchdb
+dashboard up
 
-Install all required ruby packages
+This will pull in and build the container images and run two containers:
+db
+web
 
-bundle install
-./local.sh
-
-Visit localhost:3030 to see the results
+Visit 192.168.99.100:3030 to see the results
 
 Template documents are added to couchdb to be expanded upon by the server admin
 

@@ -12,4 +12,5 @@ RUN mkdir /dashboard
 WORKDIR /dashboard
 ADD ./Gemfile /dashboard/Gemfile
 ADD ./Gemfile.lock /dashboard/Gemfile.lock
+RUn gem install bundler
 RUN bundle install

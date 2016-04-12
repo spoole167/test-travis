@@ -9,6 +9,7 @@ env:
   DOCKER_COMPOSE_VERSION: 1.6.2
 
 script:
+  - docker-compose --version
   - docker ps | grep -q blog
 
 before_install:

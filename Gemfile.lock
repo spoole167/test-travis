@@ -2,6 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.6.8)
+    childprocess (0.5.9)
+      ffi (~> 1.0, >= 1.0.11)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -25,15 +27,15 @@ GEM
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
     eventmachine (1.2.0.1)
-    eventmachine (1.2.0.1-x64-mingw32)
     execjs (2.0.2)
-    ffi (1.9.10-x64-mingw32)
+    ffi (1.9.10)
     hike (1.2.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     mime-types (2.99.1)
     multi_json (1.11.2)
     netrc (0.11.0)
+    power_assert (0.2.7)
     puma (3.3.0)
     rack (1.5.5)
     rack-protection (1.5.3)
@@ -45,14 +47,14 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    rest-client (1.8.0-x64-mingw32)
-      ffi (~> 1.9)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 3.0)
-      netrc (~> 0.7)
+    rubyzip (1.2.0)
     rufus-scheduler (2.0.24)
       tzinfo (>= 0.3.22)
     sass (3.2.19)
+    selenium-webdriver (2.53.0)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -69,6 +71,8 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    test-unit (3.1.8)
+      power_assert
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -81,17 +85,18 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
-    unf_ext (0.0.7.2-x64-mingw32)
+    websocket (1.2.3)
 
 PLATFORMS
   ruby
-  x64-mingw32
 
 DEPENDENCIES
   couchrest (~> 1.2, >= 1.2.1)
   dashing
   puma (= 3.3.0)
   rake
+  selenium-webdriver
+  test-unit
 
 BUNDLED WITH
    1.11.2

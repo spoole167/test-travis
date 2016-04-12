@@ -1,10 +1,12 @@
 language: ruby
 
 sudo: required
+
 dist: trusty
 
 rvm:
   - 2.2.2
+
 services:
   - docker
 

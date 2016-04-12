@@ -40,6 +40,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rake (11.1.2)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -90,6 +91,7 @@ DEPENDENCIES
   couchrest (~> 1.2, >= 1.2.1)
   dashing
   puma (= 3.3.0)
+  rake
 
 BUNDLED WITH
    1.11.2

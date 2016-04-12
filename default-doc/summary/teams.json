@@ -1,0 +1,13 @@
+{
+  "_id": "teams",
+  "teams" : {
+    "test" : {
+      "name": "Test Team",
+      "key": "qwerty100"
+    },
+    "grouchy" : {
+      "name": "Grouchy Team",
+      "key": "g124566"
+    }
+  }
+}

@@ -1,9 +1,0 @@
-{
-   "_id": "products",
-   "products": [
-       {
-           "id": "base",
-           "name": "Base Product"
-       }
-   ]
-}

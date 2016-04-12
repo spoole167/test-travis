@@ -1,19 +1,46 @@
 version: '2'
 
 services:
-  db:
+  dbserver:
     image: couchdb
+    ports:
+      - "5984:5984"
+    volumes:
+      - ./.couchsummary:/usr/local/var/lib/couchdb
+
+  dbteam:
+    image: couchdb
+    ports:
+      - "5985:5984"
+    volumes:
+      - ./.couchteam:/usr/local/var/lib/couchdb
+
 
   web:
     image: dashing
     build: .
-    command: bundle exec rackup -s puma -p 3030
+    command: bundle exec rackup -s puma -p 8080
     volumes:
       - .:/dashboard
     ports:
-      - "3030:3030"
+      - "80:8080"
     depends_on:
-      - db
-    
+      - dbteam
+    environment:
+      MODE: team
+      TEAM: test
+      DBURL: http://dbteam:5984/
 
-
+  summary:
+    image: dashing
+    build: .
+    command: bundle exec rackup -s puma -p 8080
+    volumes:
+      - .:/dashboard
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dbserver
+    environment:
+      MODE: summary
+      DBURL: http://dbserver:5984/

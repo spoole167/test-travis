@@ -2,6 +2,65 @@
 
 require 'couchrest'
 
+# helper from http://stackoverflow.com/questions/4505743/couchrest-checking-if-document-id-exists
+def save_or_create(db, doc)
+    begin
+      rev = db.get(doc['_id'])['_rev']
+      doc['_rev'] = rev
+      db.save_doc(doc)
+    rescue RestClient::ResourceNotFound => nfe
+      db.save_doc(doc)
+    end
+end
+
+# find default docs and add to database if missing
+def addDefaultDocs(db)
+
+    puts "Adding default docs using mode=#{ENV['MODE']}"
+    Dir["default-doc/#{ENV['MODE']}/*.json"].entries.each do |f|
+      data=JSON.parse(File.new(f).read)
+      begin
+        key=data['_id']
+        doc=@metricsdb.get(key)
+      rescue
+        #missing
+        puts "adding document #{f}"
+        @metricsdb.save_doc(data)
+      end
+
+    end
+
+end
+
+def addViews(db)
+
+    # add a view for products only (_id='product-*')
+
+    prodlist = {
+    :map => 'function(doc){
+      var parts = doc._id.split(/-/);
+      if (parts[0]==\'product\') emit(doc)
+    }'
+  }
+
+  # add a view for team / products
+  teamlist = {
+  :map => 'function(doc){
+    var parts = doc._id.split(/-/);
+    if (parts[0]==\'product\') emit(parts[1],doc)
+  }'
+}
+
+  save_or_create(@metricsdb,{
+    "_id" => "_design/products",
+    :views => {
+      :products => prodlist,
+      :teams => teamlist
+    }
+  })
+
+
+end
 
 
 class DB
@@ -15,42 +74,42 @@ if cloudant_config!=nil
   url=cloudant_config[0]['credentials']['url']
 else
   # if not found assume local Docker network open connection to couchdb
-  url="http://db:5984/"
+  url=ENV['DBURL']
 end
 
 # connect and create database if missing
 @metricsdb=CouchRest.database!("#{url}/metrics/")
 
 puts "database connection established [#{@metricsdb.host}]"
+puts "#{@metricsdb.info}"
 
+addDefaultDocs(@metricsdb)
+
+addViews(@metricsdb)
 
 #
-# returns all products
+# returns all product docs
 #
 def self.products
 
-  key="products"
-
-  begin
-    doc=@metricsdb.get(key)
-
-  rescue
-    doc={ _id: key , products: [ { id: 'base' , name: 'Base Product' }] }
-    @metricsdb.save_doc(doc)
-
-  end
-
-  doc['products']
+  results=@metricsdb.view("products/products")['rows']
+  results.map {|row| row['key']}
 
 end
 
+def self.teamdata
+  results=@metricsdb.view("products/teams")['rows']
+  results.group_by { | k | k['key']}
+
+end
+
+#
+# Return list of registered teams -  summary mode only
+#
 def self.teams
 
-  key="teams"
-
   begin
-    doc=@metricsdb.get(key)
-
+    doc=@metricsdb.get("teams")
   rescue
     return []
   end
@@ -59,6 +118,23 @@ def self.teams
 
 end
 
+
+def self.getTeam(team)
+
+  key="team-#{team}"
+
+  begin
+    doc=@metricsdb.get(key)
+
+  rescue
+    return nil
+
+  end
+
+  return doc
+
+
+end
 
 def self.hasTeamsDoc?
 
@@ -117,17 +193,37 @@ end
 #
 # sets the value for a specific metric for a specific product
 #
-def self.setMetric(product,metricid,data)
+def self.setMetric(team,product,new_metrics)
 
-  doc=@metricsdb.get(product)
-  return nil if doc==nil
+  begin
 
-  metrics=doc['metrics']
+  key="product-#{team}-#{product}"
+  doc=@metricsdb.get(key)
+  return false if doc==nil
 
-  metrics[metricid]=data
+  # get metrics or add an empty set
+  existing_metrics=doc['metrics']
+  if existing_metrics==nil
+    existing_metrics={}
+    doc['metrics']=existing_metrics
+  end
 
-  @metricsdb.update_doc(doc)
+  # for each new value update existing metrics
 
+  new_metrics.each do |k,v|
+      existing_metrics[k]=v
+  end
+
+  # save doc
+  doc.save
+
+  return true
+
+  rescue
+
+    return false
+
+  end
 
 end
 

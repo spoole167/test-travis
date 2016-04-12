@@ -1,0 +1,57 @@
+<% content_for :title do %>Team Products<% end %>
+<% columns=StandardMetrics.metrics+TeamMetrics.metrics %>
+<script type='text/javascript'>
+  $(function () {
+    Dashing.widget_base_dimensions = [130, 30]
+    Dashing.numColumns = 10
+  });
+</script>
+
+<div class="gridster">
+
+  <ul>
+
+    <li data-col="1" data-row="1" data-sizex="6" data-sizey="2">
+      <div class="dashing-header" data-header="Cloud Integration Development" data-id="awdtext" data-view="Header"></div>
+    </li>
+
+    <li data-col="1" data-row="3" data-sizex="1" data-sizey="2">
+      <div class="dashing-header-2" data-header="Product" data-id="awdtext" data-view="Header"></div>
+    </li>
+    <% dc=2%>
+    <% columns.each do |c| %>
+    <% dc=dc+1 %>
+    <li data-col="<%=dc%>" data-row="3" data-sizex="1" data-sizey="2">
+      <div class="dashing-header-2" data-header="<%=c[:title]%>" data-view="Header"></div>
+    </li>
+    <% end %>
+
+    <!-- Add detail rows. -->
+
+    <% datarow=3 %>
+
+    <% DB.products.each do |product| %>
+    
+    <% datarow=datarow+2%>
+    <li data-col="1" data-row="<%=datarow%>" data-sizex="2" data-sizey="2">
+      <div class="dashing-header-3" data-header="<%=product['name']%>" data-id="rtrcptext" data-view="Header"></div>
+    </li>
+
+    <%
+    col=2
+    columns.each do |column|
+      col=col+1
+    %>
+    <li data-col="<%=col%>" data-row="<%=datarow%>" data-sizex="1" data-sizey="2">
+      <% dataid="#{product['_id']}-#{column[:id]}" %>
+      <div data-id="<%=dataid%>" data-view="Fa"></div>
+    </li>
+    <% end %>
+
+    <% end %>
+
+  </ul>
+
+</div>
+
+<% DashboardUpdate.update %>

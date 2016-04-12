@@ -1,0 +1,11 @@
+{
+  "_id": "product-test-base1",
+  "name": "Product 1" ,
+  "metrics": {
+      "_devlead": {
+          "trend": 1,
+          "value": "30 days",
+          "active": true
+      }
+  }
+}

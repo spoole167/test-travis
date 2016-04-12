@@ -2,14 +2,7 @@ require 'dashing'
 require 'rest-client'
 
 configure do
-  set :auth_token, 'YOUR_AUTH_TOKEN'
-
-  helpers do
-    def protected!
-     # Put any authentication code you want in here.
-     # This method is run before accessing any resource.
-    end
-  end
+  set :default_dashboard, ENV['MODE']
 
 end
 

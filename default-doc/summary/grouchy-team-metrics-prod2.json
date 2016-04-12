@@ -1,0 +1,11 @@
+{
+  "_id": "product-grouchy-base2",
+  "name": "Product 2",
+  "metrics": {
+      "_devlead": {
+          "trend": -1,
+          "value": "30 days",
+          "active": false
+      }
+  }
+}

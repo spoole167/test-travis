@@ -1,6 +1,8 @@
 language: ruby
-dist: trusty
+
 sudo: required
+dist: trusty
+
 rvm:
   - 2.2.2
 services:

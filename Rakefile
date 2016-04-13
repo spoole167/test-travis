@@ -17,7 +17,7 @@ task :teardown => :bvt do
   sh "./dashboard down"
 end
 
-task :default => :teardown do
+task :default do
   puts "Build and Test"
 end
 

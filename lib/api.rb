@@ -3,6 +3,9 @@
 # note dashing reserves /<name> for refering to dashboards
 #
 
+get '/api/v1/version' do
+  "1.0"
+end
 
 get '/api/v1/metrics' do
   content_type :json

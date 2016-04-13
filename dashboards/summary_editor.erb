@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Summary Editor</title>
+</head>
+<body>
+<% summary=Metrics.mode=='summary' %>
+<table>
+  <thead>
+  <tr><td>Product</td>
+  <% Metrics.columns.each do |c| %>
+    <td><%=c[:title]%></td>
+  <% end %>
+</tr>
+</thead>
+<tbody>
+
+  <% Metrics.products.each do |product| %>
+  <% productname = summary ? "#{product['team']} / #{product['name']}" : "#{product['name']}" %>
+    <tr><td><%=productname%></td>
+    </tr>
+  <% end %>
+
+</tbody>
+</table>
+</body>
+</html>

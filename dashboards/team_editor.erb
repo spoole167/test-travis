@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="teamEditorApp">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="/assets/angular/angular.min.js"></script>
+  <script src="/assets/editor/team_editor.js"></script>
+  <script src="/assets/xeditable/js/xeditable.min.js"></script>
+
+  <link rel="stylesheet" href="/assets/team_editor.css">
+  <link rel="stylesheet" href="/assets/xeditable/css/xeditable.min.css">
+
+</head>
+
+<body ng-controller="ProductController">
+
+<table class='table'>
+  <thead>
+  <tr><td>Product</td>
+    <td ng-repeat="metric in metric_names">{{metric.title}}</td>
+  </tr>
+</thead>
+<tbody>
+
+    <tr ng-repeat="product in products">
+      <td>{{product.name}}</td>
+      <td ng-repeat="metric in metric_names">
+        <table>
+          <tr><td>Active</td><td><a href="#" editable-checkbox="product.metrics[metric.id].active" onaftersave="updateMetric(product)">{{ product.metrics[metric.id].active}}</a></td></tr>
+          <tr><td>Value</td><td><a href="#" editable-text="product.metrics[metric.id].value" onaftersave="updateMetric(product)">{{ product.metrics[metric.id].value}}</a></td></tr>
+<tr><td>Trend</td><td>
+          <a href="#" editable-select="product.metrics[metric.id].trend" e-ng-options="t.value as t.text for t in trends" onaftersave="updateMetric(product)">
+             {{ showTrend(product.metrics[metric.id].trend) }}
+           </a>
+         </td></tr>
+      </table>
+
+      </td>
+    </tr>
+
+</tbody>
+</table>
+
+</body>
+</html>

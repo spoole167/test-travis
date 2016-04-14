@@ -17,7 +17,7 @@ services:
 
 
   web:
-    image: dashing
+    image: dashing-web
     build: .
     command: bundle exec rackup -s puma -p 8080
     volumes:
@@ -31,8 +31,9 @@ services:
       TEAM: test
       DBURL: http://dbteam:5984/
 
+
   summary:
-    image: dashing
+    image: dashing-summary
     build: .
     command: bundle exec rackup -s puma -p 8080
     volumes:

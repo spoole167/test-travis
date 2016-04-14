@@ -1,0 +1,11 @@
+applications:
+- path: ..
+  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+  memory: 256M
+  instances: 1
+  domain: w3ibm.mybluemix.net
+  name: cid-metrics
+  host: cid-metrics
+  disk_quota: 1024M
+  env:
+    MODE: summary

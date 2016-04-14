@@ -14,6 +14,7 @@ gem 'multi_json','1.11.2'
 gem 'sass','3.2.19'
 gem 'hike','1.2.3'
 gem 'json','1.8.3'
+gem 'rails_12factor'
 
 gem 'thread_safe','0.3.5'
 gem 'coffee-script','2.2.0'

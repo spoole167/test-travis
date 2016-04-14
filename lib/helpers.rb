@@ -22,4 +22,8 @@ class Metrics
 
     end
 
+  def self.summaryURL
+    return ENV['SUMMARY_SERVER'] if ENV['SUMMARY_SERVER']!=nil
+    return "http://summary:8080"
+  end
 end

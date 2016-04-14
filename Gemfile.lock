@@ -45,6 +45,11 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     rake (11.1.2)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -106,6 +111,7 @@ DEPENDENCIES
   multi_json (= 1.11.2)
   puma (= 3.3.0)
   rack (= 1.5.5)
+  rails_12factor
   rake (= 11.1.2)
   sass (= 3.2.19)
   selenium-webdriver (= 2.53.0)

@@ -17,7 +17,7 @@ services:
 
 
   web:
-    image: dashing-web
+    image: dashboard
     build: .
     command: bundle exec rackup -s puma -p 8080
     volumes:
@@ -29,11 +29,11 @@ services:
     environment:
       MODE: team
       TEAM: test
+      SUMMARY_SERVER http://web:8080
       DBURL: http://dbteam:5984/
 
-
   summary:
-    image: dashing-summary
+    image: dashboard
     build: .
     command: bundle exec rackup -s puma -p 8080
     volumes:
@@ -45,3 +45,16 @@ services:
     environment:
       MODE: summary
       DBURL: http://dbserver:5984/
+      
+  test_env:
+    image: test_env
+    build: tests/
+    command: bash -c "service xvfb start; export DISPLAY=:10; ruby /dashboard/tests/bvt.rb"
+    privileged: true
+    depends_on:
+      - summary
+    volumes:
+      - .:/dashboard
+    ports:
+      - "4444:4444"
+      - "9516:9516"

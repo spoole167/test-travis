@@ -1,0 +1,12 @@
+applications:
+- path: ..
+  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+  memory: 256M
+  instances: 1
+  domain: w3ibm.mybluemix.net
+  name: cid-test-team
+  host: cid-test-team
+  disk_quota: 1024M
+  env:
+    MODE: team
+    SUMMARY_SERVER: http://cid-metrics.w3ibm.mybluemix.net

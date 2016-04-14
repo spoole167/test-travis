@@ -8,19 +8,18 @@
   <title>Summary Editor</title>
 </head>
 <body>
-<% summary=Metrics.mode=='summary' %>
 <table>
   <thead>
   <tr><td>Product</td>
-  <% Metrics.columns.each do |c| %>
+  <% StandardMetrics.metrics.each do |c| %>
     <td><%=c[:title]%></td>
   <% end %>
 </tr>
 </thead>
 <tbody>
 
-  <% Metrics.products.each do |product| %>
-  <% productname = summary ? "#{product['team']} / #{product['name']}" : "#{product['name']}" %>
+  <% DB.products.each do |product| %>
+  <% productname =  "#{product['team']} / #{product['name']}" %>
     <tr><td><%=productname%></td>
     </tr>
   <% end %>

@@ -5,12 +5,21 @@
 class Metrics
 
 
+  def self.metricNames
+    return StandardMetrics.metrics+TeamMetrics.metrics if teamMode?
+    return StandardMetrics.metrics
+  end
 
-  def self.mode
+  def self.teamMode?
 
-    return 'team'    if ENV['MODE']=='team'
-    return 'summary' if ENV['MODE']=='summary'
+    ENV['MODE']=='team'
 
   end
+
+  def self.summaryMode?
+
+      ENV['MODE']=='summary'
+
+    end
 
 end

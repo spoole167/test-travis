@@ -31,8 +31,8 @@
       <td>{{product.name}}</td>
       <td ng-repeat="metric in metric_names">
         <table>
-          <tr><td>Active</td><td><a href="#" editable-checkbox="product.metrics[metric.id].active" onaftersave="updateMetric(product)">{{ product.metrics[metric.id].active}}</a></td></tr>
-          <tr><td>Value</td><td><a href="#" editable-text="product.metrics[metric.id].value" onaftersave="updateMetric(product)">{{ product.metrics[metric.id].value}}</a></td></tr>
+          <tr><td>Active</td><td><a href="#" editable-checkbox="product.metrics[metric.id].active" onaftersave="updateMetric(product)">{{ product.metrics[metric.id].active || false}}</a></td></tr>
+          <tr><td>Value</td><td><a href="#" editable-text="product.metrics[metric.id].value" onaftersave="updateMetric(product)">{{ product.metrics[metric.id].value || '-1 days'}}</a></td></tr>
 <tr><td>Trend</td><td>
           <a href="#" editable-select="product.metrics[metric.id].trend" e-ng-options="t.value as t.text for t in trends" onaftersave="updateMetric(product)">
              {{ showTrend(product.metrics[metric.id].trend) }}

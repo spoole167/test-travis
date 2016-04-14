@@ -170,23 +170,17 @@ end
 # returns metric data for specific product
 #
 
-def self.productMetrics(product)
+def self.productMetrics(team,product)
 
   # get metrics data
-  key="#{product}"
+  key="product-#{team}-#{product}"
   begin
-    doc=@metricsdb.get(key)
+    data= @metricsdb.get(key)
   rescue
-    doc={ _id: key, product: product,name: product, metrics: {} }
-    # add metric fields
-    Metrics.columns.each do |c|
-      doc[:metrics][c[:id]]={active: true, trend: 0 , value: "n/a"}
-    end
-    @metricsdb.save_doc(doc)
-
+    data={}
   end
 
-  doc
+  data['metrics'] || {}
 
 end
 

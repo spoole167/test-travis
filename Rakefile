@@ -1,4 +1,4 @@
-task :bvt => :testenv do
+task :bvt do
      system "ruby tests/bvt.rb"
 end
 
@@ -17,7 +17,6 @@ task :teardown => :bvt do
   sh "./dashboard down"
 end
 
-task :default do
+task :default => :bvt do
   puts "Build and Test"
 end
-

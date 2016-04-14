@@ -7,10 +7,48 @@ get '/api/v1/version' do
   "1.0"
 end
 
+
+get '/api/v1/metric_names' do
+  content_type :json
+  Metrics.metricNames.to_json
+end
+
+
 get '/api/v1/metrics' do
   content_type :json
-  DB.metrics.to_json
+  DB.products.to_json
 end
+
+
+# update a specific metric (only called from editor..)
+
+post '/api/v1/product' do
+  content_type :json
+
+  begin
+
+    data=JSON.parse(request.body.read)
+
+    parts=data['_id'].split('-')
+    team=parts[1]
+    product=parts[2]
+    metrics=data['metrics']
+    #{"_id"=>"product-grouchy-base2", "_rev"=>"1-be3b7c40bb5c4bd878581e4b1f284c18", "name"=>"Product 2", "metrics"=>{"_devlead"=>{"trend"=>0, "value"=>"30 days", "active"=>false}}}
+
+    result=DB.setMetric(team,product,metrics)
+    return metricUpdateError(400,501,"update failed") if !result
+    # update worked - send out metric update
+    DashboardUpdate.publishUpdate(team,product,metrics)
+  rescue
+    return metricUpdateError(400,502,"update failed")
+  end
+
+  status 200
+
+  return {status: 200}.to_json
+
+end
+
 
 # put to update metrics for a specific product
 # metric data is in the body in json format as well as a key
@@ -32,17 +70,20 @@ put '/api/v1/metric' do
 
   # apparently valid data elements present - does it make a valid request?
 
+  team=data['team']
+  product=data['product']
+
   # find team entry and check key
-  return metricUpdateError(403,205,"invalid key for team #{data['team']}") if !validKey?(data['key'],data['team'])
+  return metricUpdateError(403,205,"invalid key for team #{team}") if !validKey?(data['key'],team)
 
   # check metrics data is well formed..
 
   # keys must be in valid set
-
+  columns=StandardMetrics.metrics+TeamMetrics.metrics
   metrics=data['metrics']
   keys=metrics.keys
 
-  Metrics.columns.each do |c|
+  columns.each do |c|
     keys.delete(c[:id])
   end
 
@@ -69,11 +110,12 @@ put '/api/v1/metric' do
   end
 
   # valid key and team etc- lets try to update the product doc
-  result=DB.setMetric(data['team'],data['product'],data['metrics'])
+  result=DB.setMetric(team,product,data['metrics'])
 
-  return metricUpdateError(400,207,"Update failed. No product document #{data['product']} for team #{data['team']} ") if result==false
+  return metricUpdateError(400,207,"Update failed. No product document #{product} for team #{team} ") if result==false
 
   # otherwise all was good
+  DashboardUpdate.publishUpdate(team,product,metrics)
 
   status 200
 
@@ -104,10 +146,16 @@ def validKey?(key,team)
 
   teamdoc=DB.getTeam(team)
 
-  return false if  teamdoc==nil
+  # if there is no team doc look for a teams document
 
-  team_key=teamdoc['key']
+  if  teamdoc==nil
+      all_teams=DB.teams
+      team_entry=all_teams[team] || {}
+      team_key=team_entry['key']
 
+  else
+    team_key=teamdoc['key']
+  end
   return team_key==key
 
 

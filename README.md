@@ -1,5 +1,5 @@
 # agile-metrics-dashboard [![Chat](https://img.shields.io/badge/chat-on%20slack-brightgreen.svg)](https://cid-eacs.slack.com/messages/metrics/)
-Dashing based metrics server
+## Dashing based metrics server
 
 Example:
 
@@ -14,11 +14,19 @@ use the Docker Quickstart Shell and then run from the top-level directory of thi
 
 ./dashboard up
 
-This will pull in and build the container images and run two containers:
-db
-web
+This will pull in and build the container images and run four containers:
 
-Visit http://192.168.99.100:3030 (which is the docker VM containers address on your machine) to see the results
+* dbserver - the summary database of team/products
+* dbteam - a team/products database
+* web - the team dashboard web app
+* summary - the summary dashboard web app
+
+Visit http://192.168.99.100:8080 (which is the docker VM containers address on your machine) to see the results of the summary dashboard and
+http://192.168.99.100/ for the dashboard of the team server.
+
+When finished, close it down with:
+
+./dashboard down
 
 Template documents are added to couchdb to be expanded upon by the server admin
 

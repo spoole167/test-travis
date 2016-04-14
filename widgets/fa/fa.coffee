@@ -23,7 +23,7 @@ class Dashing.Fa extends Dashing.Widget
     node = $(@node)
 
     # remove old rendering
-    node.removeClass("trend-diabled")
+    node.removeClass("trend-disabled")
     node.removeClass("trend-positive")
     node.removeClass("trend-negative")
     node.removeClass("trend-stable")
